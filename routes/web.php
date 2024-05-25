@@ -39,7 +39,26 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 
 
 
+    Route::get('sites', [ App\Http\Controllers\Admin\SitesController::class, 'index']);
+
+    Route::get('add-site', [ App\Http\Controllers\Admin\SitesController::class, 'create']);
+
+    Route::post('add-site', [ App\Http\Controllers\Admin\SitesController::class, 'store']);
+
+    // Route::get('site/{site}/edit', [ App\Http\Controllers\Admin\localitesController::class, 'edit']);
+    Route::get('edit-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'edit']);
+
+    Route::put('update-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'update']);
+
+    Route::get('detail-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail']);
+
+
+    Route::get('delete-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);
+
+
+
 });
+
 
 
 Auth::routes();

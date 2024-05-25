@@ -16,8 +16,6 @@ class localitesController extends Controller
 
     public function create(){
 
-
-
         return view('admin.localite.create');
     }
 

@@ -65,7 +65,7 @@
                                
                             </form>
                             <div class="text-center">
-                                <a class="small" href="#">Voulez vous importer des localités?</a>
+                                <a class="small" href="{{ url('admin/import-localite')}}">Voulez vous importer des localités?</a>
                             </div>
                         </div>
                     </div>

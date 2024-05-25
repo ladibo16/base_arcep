@@ -16,5 +16,6 @@ class Localite extends Model
         'commune',
         'departement',
         'quartier'
-    ];
+    ];  
+
 }
