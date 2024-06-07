@@ -1,14 +1,18 @@
 @extends('layouts.master')
 
+
 @section('title', 'Arcep BDD|Sites|ListOfSites')
 
 @section('content')
+
+
+{{$site -> emplacement}}
 
     <!-- Begin Page Content -->
     <div class="container-fluid"> 
 
         <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             @foreach ($site as $item)
              <h1 class="h3 mb-0 text-gray-800">Détail du site n° {{$item->id}}</h1>
             @endforeach
@@ -17,30 +21,30 @@
                 <div class="alert alert-success">{{session('status')}}</div> 
             @endif
             <a href="{{url('admin/sites')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Voir les sites</a>
-        </div>
+        </div> --}}
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
-                <div class="container-fluid">
+            {{-- <div id="content"> --}}
+                {{-- <div class="container-fluid"> --}}
 
-                    <div class="card shadow mb-4">
+                    {{-- <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h4 class="m-0 font-weight-bold text-primary text-center">Toutes les informations</h4>
                         </div>  
-                    </div>
-                    <p>
+                    </div> --}}
+                    {{-- <p>
                         @foreach ($site as $item)
                         <div class="form-group row">
-                            {{-- <div class=""> --}}
+                            
                                 <div class="col-sm-4 mb-4">
                                     <p><b>ID du site:</b> {{$item->id_site}}</p>
                                     <p><b>Longitude:</b> {{$item->longitude}}</p>
                                     <p><b>Latitude:</b> {{$item->latitude}}</p>   
                                 </div>
-                            {{-- </div> --}}
+                            
 
                             <div class="col-sm-4">
                                 <p><b>Localite:</b> {{$item->localite}}</p>
@@ -76,11 +80,11 @@
                         </div>
                              
                         @endforeach
-                    </p>
+                    </p> --}}
 
 
-                </div>
-            </div>
+                {{-- </div> --}}
+            {{-- </div> --}}
         </div>
 
 

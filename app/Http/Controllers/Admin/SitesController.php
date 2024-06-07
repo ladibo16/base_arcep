@@ -110,7 +110,8 @@ class SitesController extends Controller
     }
 
     
-    public function detail($sites_id){
+    public function detail_site($id){
+       
         $site = Site::all();
         return view('admin.site.detail', compact('site'));
 

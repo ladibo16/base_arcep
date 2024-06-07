@@ -37,6 +37,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::get('delete-localite/{localite_id}', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
 
+    Route::post('import-localite', [ App\Http\Controllers\Admin\localitesController::class, 'import']);
+
 
 
     Route::get('sites', [ App\Http\Controllers\Admin\SitesController::class, 'index']);
@@ -50,7 +52,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::put('update-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'update']);
 
-    Route::get('detail-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail']);
+    Route::get('detail_site/{id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail_site']);
 
 
     Route::get('delete-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);

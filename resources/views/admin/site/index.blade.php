@@ -54,7 +54,7 @@
                                                 <td>{{$item->proprietaire}}</td>
                                                 <td>{{$item->emplacement}}</td>
                                                 <td>
-                                                    <a href="{{url('admin/detail-site/'.$item->id)}}" class="btn btn-outline-primary btn-sm">Détails</a>
+                                                    <a href="{{url('admin/detail_site',$item->id)}}" class="btn btn-outline-primary btn-sm">Détails</a>
                                                     <a href="{{url('admin/edit-site/'.$item->id)}}" class="btn btn-outline-success btn-sm ">Modifier</a>
                                                     {{-- <a href="{{url('admin/site/'.$item->id.'/edit')}}" class="btn btn-outline-success btn-sm ">Modifier</a> --}}
                                                     <a href="{{url('admin/delete-site/'.$item->id)}}" class="btn btn-outline-danger btn-sm">Supprimer</a>

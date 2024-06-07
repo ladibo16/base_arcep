@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\LocalitesImport;
 use Illuminate\Http\Request;
 use App\Models\Localite;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\Admin\LocaliteFormRequest;
 
 class localitesController extends Controller
@@ -71,6 +73,22 @@ class localitesController extends Controller
         }
 
     }
+
+    public function import(Request $request){
+
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new LocalitesImport, $file);
+
+        return redirect('admin/localite')->with('statut', 'File imported successfully.');
+    }
+
+        
+
 
 
     
