@@ -62,9 +62,9 @@ class localitesController extends Controller
 
     }
 
-    public function destroy($localite_id){
+    public function destroy(Request $request){
 
-        $localite = Localite::find($localite_id);
+        $localite = Localite::find($request->localite_delete_id);
         if ($localite) {
            $localite->delete();
            return redirect('admin/localite')->with('status', 'Vous avez supprimer une localité avec succès!');

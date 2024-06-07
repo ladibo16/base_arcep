@@ -35,7 +35,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::put('update-localite/{localite_id}', [ App\Http\Controllers\Admin\localitesController::class, 'update']);
 
-    Route::get('delete-localite/{localite_id}', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
+    // Route::get('delete-localite/{localite_id}', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
+       Route::post('delete-localite', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
+    
 
     Route::post('import-localite', [ App\Http\Controllers\Admin\localitesController::class, 'import']);
 
