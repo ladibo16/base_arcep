@@ -17,7 +17,7 @@
             </div>
             <div class="modal-body">
                 <label for="text">Localité n°</label>
-                <input type="button" name="localite_delete_id" id="localite_id">
+                <input type="button" name="localite_id" id="localite_id">
                 
                 <br>
                Vous allez supprimer la localité?
