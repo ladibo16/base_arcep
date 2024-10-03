@@ -36,7 +36,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
     Route::put('update-localite/{localite_id}', [ App\Http\Controllers\Admin\localitesController::class, 'update']);
 
     // Route::get('delete-localite/{localite_id}', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
-       Route::post('delete-localite', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
+    Route::post('delete-localite', [ App\Http\Controllers\Admin\localitesController::class, 'destroy']);
+    // Route::delete('/delete-localite/{item}', [ App\Http\Controllers\Admin\localitesController::class, 'destroy'])->name('localite.destroy');
     
 
     Route::post('import-localite', [ App\Http\Controllers\Admin\localitesController::class, 'import']);
@@ -56,8 +57,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::get('detail_site/{id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail_site']);
 
+    Route::post('delete-site', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);
 
-    Route::get('delete-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);
+    // Route::get('delete-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);
 
 
 

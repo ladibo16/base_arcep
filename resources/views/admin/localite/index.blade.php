@@ -4,6 +4,37 @@
 
 @section('content')
 
+
+
+
+{{-- @foreach ($localite as $item)
+
+    <div class="modal fade" id="deleteModal-{{ $item->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $item->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel{{ $item->id }}">Confirmation de Suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer cet équipement ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <form action="{{ route('localite.destroy', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Confirmer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endforeach --}}
+    
+    
+
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -11,16 +42,13 @@
             @csrf
             
             <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer une localité</h1>
-            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            <h5 class="modal-title" id="exampleModalLabel">Supprimer une localité</h5>
+            
             <button type="button" class="btn-close" aria-label="Close"></button>  
             </div>
             <div class="modal-body">
-                <label for="text">Localité n°</label>
-                <input type="button" name="localite_id" id="localite_id">
-                
-                <br>
-               Vous allez supprimer la localité?
+                <input type="hidden" name="localite_delete_id" id="localite_id">
+                <h5>Etes vous sure de vouloir supprimer cette localite</h5>
             </div>
             <div class="modal-footer">
             
@@ -29,7 +57,9 @@
         </form>
       </div>
     </div>
-  </div>
+</div>
+
+
   
 
     <!-- Begin Page Content -->
@@ -61,6 +91,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                     <thead>
+                                
                                         <tr>
                                             <th>N°</th>
                                             <th>Arrondisement</th>
@@ -82,10 +113,11 @@
                                                 <td>
                                                     <a href="{{url('admin/edit-localite/'.$item->id)}}" class="btn btn-success btn-sm ">Modifier</a>
                                                     {{-- <a href="{{url('admin/delete-localite/'.$item->id)}}" class="btn btn-danger btn-sm">Supprimer</a> --}}
+                                                    <button type="button" class="btn btn-danger btn-sm deleteLocaliteBtn" value="{{$item->id}}">supprimer</button>
 
-                                                    <button type="button"  class="btn btn-danger btn-sm deleteLocaliteBtn" value="{{ $item->id }}">Delete</button>
                                                 </td>
                                             </tr>
+                                           
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -104,6 +136,7 @@
 @section('scripts')
 
     <script>
+        
         $(document).ready(function (){
             $('.deleteLocaliteBtn').click(function(e){
                 e.preventDefault();

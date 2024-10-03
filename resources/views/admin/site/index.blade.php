@@ -4,18 +4,42 @@
 
 @section('content')
 
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ url('admin/delete-site') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer une Site</h5>
+
+                        <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="site_delete_id" id="site_id">
+                        <h5>Etes vous sure de vouloir supprimer cette ce site</h5>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Begin Page Content -->
-    <div class="container-fluid"> 
+    <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Sites</h1>
 
             @if (session('status'))
-                <div class="alert alert-success">{{session('status')}}</div>
-                
+                <div class="alert alert-success">{{ session('status') }}</div>
             @endif
-            <a href="{{url('admin/add-site')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Ajouter un site</a>
+            <a href="{{ url('admin/add-site') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Ajouter
+                un site</a>
         </div>
 
         <!-- Content Wrapper -->
@@ -47,17 +71,20 @@
                                     <tbody>
                                         @foreach ($site as $item)
                                             <tr>
-                                                <td>{{$item->id}}</td>
-                                                <td>{{$item->id_site}}</td>
-                                                <td>{{$item->localite}}</td>
-                                                <td>{{$item->statut}}</td>
-                                                <td>{{$item->proprietaire}}</td>
-                                                <td>{{$item->emplacement}}</td>
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->id_site }}</td>
+                                                <td>{{ $item->localite }}</td>
+                                                <td>{{ $item->statut }}</td>
+                                                <td>{{ $item->proprietaire }}</td>
+                                                <td>{{ $item->emplacement }}</td>
                                                 <td>
-                                                    <a href="{{url('admin/detail_site',$item->id)}}" class="btn btn-outline-primary btn-sm">Détails</a>
-                                                    <a href="{{url('admin/edit-site/'.$item->id)}}" class="btn btn-outline-success btn-sm ">Modifier</a>
+                                                    <a href="{{ url('admin/detail_site', $item->id) }}"
+                                                        class="btn btn-outline-info btn-sm">Détails</a>
+                                                    <a href="{{ url('admin/edit-site/' . $item->id) }}"
+                                                        class="btn btn-outline-success btn-sm ">Modifier</a>
                                                     {{-- <a href="{{url('admin/site/'.$item->id.'/edit')}}" class="btn btn-outline-success btn-sm ">Modifier</a> --}}
-                                                    <a href="{{url('admin/delete-site/'.$item->id)}}" class="btn btn-outline-danger btn-sm">Supprimer</a>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm deleteSiteBtn"
+                                                        value="{{ $item->id }}">supprimer</button>
 
                                                 </td>
                                             </tr>
@@ -74,4 +101,22 @@
 
 
     </div>
+@endsection
+
+@section('scripts')
+
+    <script>
+        $(document).ready(function() {
+            $('.deleteSiteBtn').click(function(e) {
+                e.preventDefault();
+
+                var site_id = $(this).val();
+
+                $('#site_id').val(site_id);
+
+                $('#deleteModal').modal('show');
+            });
+        });
+    </script>
+
 @endsection

@@ -64,15 +64,38 @@ class localitesController extends Controller
 
     public function destroy(Request $request){
 
-        $localite = Localite::find($request->localite_id);
+        $localite = Localite::find($request->localite_delete_id);
+
         if ($localite) {
            $localite->delete();
            return redirect('admin/localite')->with('status', 'Vous avez supprimer une localité avec succès!');
-        }else {
+        }
+        else{
+
             return redirect('admin/localite')->with('status', 'Impossible de supprimer ID manquant!');
         }
-
     }
+
+    // public function destroy(Localite $localite){
+        
+    //     $localite->delete();
+
+    //     return redirect('admin/localite')->with('status', 'localité supprimée avec succès.');
+    // }
+
+
+
+        // public function destroy(Localite $localite){
+
+        //     $localite->delete();
+        //     if ($localite) {
+        //        $localite->delete();
+        //        return redirect('admin/localite')->with('status', 'Vous avez supprimer une localité avec succès!');
+        //     }else {
+        //         return redirect('admin/localite')->with('status', 'Impossible de supprimer ID manquant!');
+        //     }
+
+        // }
 
     public function import(Request $request){
 
