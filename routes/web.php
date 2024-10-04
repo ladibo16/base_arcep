@@ -55,9 +55,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::put('update-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'update']);
 
-    Route::get('detail_site/{id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail_site']);
+    Route::get('detail_sites/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail_sites']);
+    // Route::get('detail_site/{id}', [ App\Http\Controllers\Admin\SitesController::class, 'detail_site']);
 
-    Route::post('delete-site', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);
+    Route::post('delete_site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'delete_site']);
 
     // Route::get('delete-site/{site_id}', [ App\Http\Controllers\Admin\SitesController::class, 'destroy']);
 

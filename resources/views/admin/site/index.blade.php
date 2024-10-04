@@ -78,13 +78,14 @@
                                                 <td>{{ $item->proprietaire }}</td>
                                                 <td>{{ $item->emplacement }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/detail_site', $item->id) }}"
+                                                    <a href="{{ url('admin/detail_sites', $item->id) }}"
                                                         class="btn btn-outline-info btn-sm">Détails</a>
                                                     <a href="{{ url('admin/edit-site/' . $item->id) }}"
                                                         class="btn btn-outline-success btn-sm ">Modifier</a>
                                                     {{-- <a href="{{url('admin/site/'.$item->id.'/edit')}}" class="btn btn-outline-success btn-sm ">Modifier</a> --}}
-                                                    <button type="button" class="btn btn-outline-danger btn-sm deleteSiteBtn"
-                                                        value="{{ $item->id }}">supprimer</button>
+
+                                                    <a href="{{ url('delete_site', $item->id) }}" class="btn btn-danger"
+                                                        onclick="confirmation(event)">Supprimer</a>
 
                                                 </td>
                                             </tr>
@@ -106,17 +107,57 @@
 @section('scripts')
 
     <script>
-        $(document).ready(function() {
-            $('.deleteSiteBtn').click(function(e) {
-                e.preventDefault();
 
-                var site_id = $(this).val();
+        function confirmation(ev) {
 
-                $('#site_id').val(site_id);
+        ev.preventDefault();
 
-                $('#deleteModal').modal('show');
-            });
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+
+        // console.log(urlToRedirect); 
+
+        swal({
+
+            title: "Are you sure to Delete this post",
+
+            text: "You will not be able to revert this!",
+
+            icon: "warning",
+
+            buttons: true,
+
+            dangerMode: true,
+
+        })
+
+        .then((willCancel) => {
+
+            if (willCancel) {
+
+
+
+
+
+                
+
+                window.location.href = urlToRedirect;
+
+                
+
+            }  
+
+
+
+
+
         });
+
+
+
+        
+
+    }
+
     </script>
 
 @endsection

@@ -97,19 +97,26 @@ class SitesController extends Controller
 
     }
 
-    public function destroy(Request $request){
-
-        $site = Site::find($request->site_delete_id);
-
-        if ($site) {
-           $site->delete();
-           return redirect('admin/sites')->with('status', 'Vous avez supprimer un site avec succès!');
-        }
-        else{
-
-            return redirect('admin/sites')->with('status', 'Impossible de supprimer ID manquant!');
-        }
+    public function delete_site($id)
+    {
+ 
+         $site = Site::find($id);
+         return view('admin.site.index',compact('site'));
     }
+
+    // public function destroy(Request $request){
+
+    //     $site = Site::find($request->site_delete_id);
+
+    //     if ($site) {
+    //        $site->delete();
+    //        return redirect('admin/sites')->with('status', 'Vous avez supprimer un site avec succès!');
+    //     }
+    //     else{
+
+    //         return redirect('admin/sites')->with('status', 'Impossible de supprimer ID manquant!');
+    //     }
+    // }
 
     // public function destroy($sites_id){
 
@@ -124,18 +131,12 @@ class SitesController extends Controller
     // }
 
     
-    // public function detail_site($id){
-       
-    //     $site = Site::all();
-    //     return view('admin.site.detail', compact('site'));
+   public function detail_sites($id)
+   {
 
-    // }
-public function detail_site($id)
-{
-    // Récupérer un seul enregistrement en utilisant l'ID
-    $site = Site::findOrFail($id);
-    return view('admin.site.detail', compact('site'));
-}
+        $site = Site::find($id);
+        return view('admin.site.detail',compact('site'));
+   }
 
 
 }
